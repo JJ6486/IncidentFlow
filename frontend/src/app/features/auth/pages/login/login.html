@@ -1,0 +1,67 @@
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo">!</div>
+
+      <h1>Welcome back</h1>
+      <p>Sign in to manage your incidents and keep your team informed.</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email address</label>
+
+        <input
+          id="email"
+          type="email"
+          placeholder="you@example.com"
+          formControlName="email"
+        />
+
+        @if (email.touched && email.invalid) {
+          <div class="field-error">
+            @if (email.errors?.['required']) {
+              Email address is required.
+            }
+
+            @if (email.errors?.['email']) {
+              Enter a valid email address.
+            }
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+
+        <input
+          id="password"
+          type="password"
+          placeholder="Enter your password"
+          formControlName="password"
+        />
+
+        @if (password.touched && password.invalid) {
+          <div class="field-error">
+            @if (password.errors?.['required']) {
+              Password is required.
+            }
+
+            @if (password.errors?.['minlength']) {
+              Password must be at least 6 characters.
+            }
+          </div>
+        }
+      </div>
+
+      <button type="submit">
+        Sign in
+      </button>
+    </form>
+
+    <p class="signup-text">
+      Don't have an account?
+      <a routerLink="/register">Create an account</a>
+    </p>
+  </div>
+</div>
